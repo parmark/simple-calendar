@@ -31,107 +31,61 @@
     <div class="container">
       <!-- Timeblocks go here -->
       <div class="row">
-        <!-- <div class="col-1 border border-primary border-left-0">
-          <p class="text-center">9AM</p>
-        </div>
-        <div class="col-8">
-
-        </div>
-        <div class="col-1">
-          <button class="btn btn-danger">
-            <span class="fa fa-comment"></span>
-          </button>
-        </div> -->
-
+        
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">9AM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">9AM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">10AM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">10AM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">11AM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">11AM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">12PM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">12AM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">1PM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">1PM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">2PM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">2PM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">3PM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">3PM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">4PM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">4PM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text">5PM</span>
-          </div>
-          <input type="text" class="form-control">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Save</button>
-          </div>
+          <span class="input-group-text input-group-prepend time">5PM</span>
+          <input type="text" class="form-control activity">
+          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
         </div>
+
       </div>
       
     </div>
@@ -142,12 +96,30 @@
       
       $(document).ready(function() {
 
+        var hourlyActivities = {
+          nineAM: "",
+          tenAM: "",
+          elevenAM: "",
+          twelvePM: "",
+          onepM: "",
+          twoPM: "",
+          threePM: "",
+          fourPM: "",
+          fivePM: "",
+          }
+
         init();
 
+        // Displays date in the header in this format: "Day, Month Date" (eg. Saturday, Feburary 8th)
         function init() {
-          // $("#currentDay").text(Date(Date.now()));
           $("#currentDay").text(moment().format("dddd, MMMM Do"))
         }
+
+        // When clicking any save button
+        $(".btn").on("click", function(event) {
+
+          localStorage.setItem(($(this).siblings(".time").text()), $(this).siblings(".activity").val())
+        })
 
       });
 
