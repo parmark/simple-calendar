@@ -34,5 +34,22 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="text/javascript">
+      
+      $(document).ready(function() {
+
+        var currentDateAndTime = Date(Date.now());// exp: Fri Oct 25 2019 17:40:56 GMT-0400 (Eastern Daylight Time)`
+        var currentHour = new Date().getHours();//Current hour in military time`
+
+        init();
+
+        function init() {
+          // $("#currentDay").text(Date(Date.now()));
+          $("#currentDay").text(moment().format("dddd, MMMM Do"))
+        }
+
+      });
+
+    </script>
   </body>
 </html>
