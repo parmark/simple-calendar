@@ -18,7 +18,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="Develop/style.css" />
     <title>Work Day Scheduler</title>
   </head>
 
@@ -51,7 +51,7 @@
         </div>
 
         <div class="input-group mb-3">
-          <span class="input-group-text input-group-prepend time">12AM</span>
+          <span class="input-group-text input-group-prepend time">12PM</span>
           <input type="text" class="form-control description">
           <button class="saveBtn" type="button">Save</button>
         </div>
@@ -107,7 +107,7 @@
           refreshScheduler();
         }
 
-        // When clicking any save button
+        // When clicking any save button the text held in its respective description field is saved to local storage
         $(".saveBtn").on("click", function(event) {
           localStorage.setItem(($(this).siblings(".time").text()), $(this).siblings(".description").val())
         })
@@ -134,9 +134,7 @@
             }
           })
         }
-
       });
-
     </script>
   </body>
 </html>
