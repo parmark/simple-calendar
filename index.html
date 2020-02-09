@@ -112,6 +112,7 @@
           localStorage.setItem(($(this).siblings(".time").text()), $(this).siblings(".description").val())
         })
 
+        // Loops through the timeblock divs checking to see if the time is before, during, or after the current hour
         function colorCode() {
           $(".time").each(function() {
             if ($(this).text() === moment().format("hA")) {
@@ -127,6 +128,7 @@
           })
         }
 
+        // Pulls schedule from local storage
         function refreshScheduler() {
           $(".time").each(function() {
             if (localStorage.getItem($(this).text()) !== null) {
