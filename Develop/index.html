@@ -104,6 +104,7 @@
         function init() {
           $("#currentDay").text(moment().format("dddd, MMMM Do"))
           colorCode();
+          refreshScheduler();
         }
 
         // When clicking any save button
@@ -123,6 +124,14 @@
             else {
               $(this).siblings(".description").addClass("future");
             }           
+          })
+        }
+
+        function refreshScheduler() {
+          $(".time").each(function() {
+            if (localStorage.getItem($(this).text()) !== null) {
+              $(this).siblings(".description").val(localStorage.getItem($(this).text()))
+            }
           })
         }
 
