@@ -34,56 +34,56 @@
         
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">9AM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">10AM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">11AM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">12AM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">1PM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">2PM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">3PM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">4PM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
         <div class="input-group mb-3">
           <span class="input-group-text input-group-prepend time">5PM</span>
-          <input type="text" class="form-control activity">
-          <button class="btn btn-outline-secondary input-group-append" type="button">Save</button>
+          <input type="text" class="form-control description">
+          <button class="saveBtn" type="button">Save</button>
         </div>
 
       </div>
@@ -96,30 +96,35 @@
       
       $(document).ready(function() {
 
-        var hourlyActivities = {
-          nineAM: "",
-          tenAM: "",
-          elevenAM: "",
-          twelvePM: "",
-          onepM: "",
-          twoPM: "",
-          threePM: "",
-          fourPM: "",
-          fivePM: "",
-          }
+        var currentTimePast = false;
 
         init();
 
         // Displays date in the header in this format: "Day, Month Date" (eg. Saturday, Feburary 8th)
         function init() {
           $("#currentDay").text(moment().format("dddd, MMMM Do"))
+          colorCode();
         }
 
         // When clicking any save button
-        $(".btn").on("click", function(event) {
-
-          localStorage.setItem(($(this).siblings(".time").text()), $(this).siblings(".activity").val())
+        $(".saveBtn").on("click", function(event) {
+          localStorage.setItem(($(this).siblings(".time").text()), $(this).siblings(".description").val())
         })
+
+        function colorCode() {
+          $(".time").each(function() {
+            if ($(this).text() === moment().format("hA")) {
+              $(this).siblings(".description").addClass("present");
+              currentTimePast = true;
+            }
+            else if (!currentTimePast) {
+              $(this).siblings(".description").addClass("past");
+            } 
+            else {
+              $(this).siblings(".description").addClass("future");
+            }           
+          })
+        }
 
       });
 
